@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirect Page</title>
+</head>
+<body>
+
+<button id="startButton">START</button>
+
+<script>
+document.getElementById("startButton").addEventListener("click", function() {
+  // Get the link from cell A2 of the Google Sheet
+  fetch("https://sheets.googleapis.com/v4/spreadsheets/1_xhj5LKv_6F0CMz1k07C-hh53UX1QUOnh6tqZhQRCN8/values/A2?key=ad73c203b3d0d1f3b82145fcb10189b274e53565")
+    .then(response => response.json())
+    .then(data => {
+      const link = data.values[0][0]; // Assuming cell A2 contains the link
+      window.location.href = link; // Redirect to the link
+    })
+    .catch(error => {
+      console.error("There was an error fetching the link:", error);
+    });
+});
+</script>
+
+</body>
+</html>
